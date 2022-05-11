@@ -1,10 +1,10 @@
-import { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef, useRef } from 'react';
+import { useEffect, useState, KeyboardEvent, useRef } from 'react';
 import styles from './Rating.module.css';
 import { RatingProps } from './Rating.props';
 import cn from 'classnames';
 import StarIcon from './star.svg';
 
-export const Rating = ({ isEditable = false, rating, setRating, className, tabIndex, ...props }: RatingProps): JSX.Element => {
+export const Rating = ({ isEditable = false, rating, setRating, tabIndex, ...props }: RatingProps): JSX.Element => {
   const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
   const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
 
