@@ -1,4 +1,4 @@
-import { Advantages, Htag, P, Product, Sort, Tag } from "../../components";
+import { Advantages, Htag, Product, Sort, Tag } from "../../components";
 import { TopPageComponentProps } from "./TopPageComponent.props";
 import styles from "./TopPageComponent.module.css";
 import { HhData } from "../../components";
@@ -9,15 +9,15 @@ import { sortReducer } from "./sort.reducer";
 import { useReducedMotion } from "framer-motion";
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
-	const [{ products: sortedProducts, sort }, dispathSort] = useReducer(sortReducer, { products, sort: SortEnum.Rating });
+	const [{ products: sortedProducts, sort }, dispatch] = useReducer(sortReducer, { products, sort: SortEnum.Rating });
 	const shouldReduceMotion = useReducedMotion();
 
 	const setSort = (sort: SortEnum) => {
-		dispathSort({ type: sort });
+		dispatch({ type: sort });
 	};
 
 	useEffect(() => {
-		dispathSort({ type: "reset", initialState: products });
+		dispatch({ type: "reset", initialState: products });
 	}, [products]);
 
 	return (
