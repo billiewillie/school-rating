@@ -10,7 +10,7 @@ import { Divider } from "../Divider/Divider";
 import Image from "next/image";
 import { ForwardedRef, forwardRef, useRef, useState } from "react";
 import { Review } from "../Review/Review";
-import { ReviewForm } from "../ReviewForm/ReviewForm";
+// import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { motion } from "framer-motion";
 
 export const Product = motion(
