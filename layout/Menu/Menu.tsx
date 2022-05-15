@@ -11,27 +11,29 @@ import { motion, useReducedMotion } from "framer-motion";
 export const Menu = (): JSX.Element => {
 	const { menu, setMenu, firstCategory } = useContext(AppContext);
 	const [announce, setAnnounce] = useState<"closed" | "opened" | undefined>();
-	// const shouldReduceMotion = useReducedMotion();
+	const shouldReduceMotion = useReducedMotion();
 	const router = useRouter();
 
-	// const variants = {
-	// 	visible: {
-	// 		marginBottom: 20,
-	// 		transition: shouldReduceMotion ? {} : {
-	// 			when: 'beforeChildren',
-	// 			staggerChildren: 0.1
-	// 		}
-	// 	},
-	// 	hidden: { marginBottom: 0 }
-	// };
+	const variants = {
+		visible: {
+			marginBottom: 20,
+			transition: shouldReduceMotion
+				? {}
+				: {
+						when: "beforeChildren",
+						staggerChildren: 0.1,
+				  },
+		},
+		hidden: { marginBottom: 0 },
+	};
 
-	// const variantsChildren = {
-	// 	visible: {
-	// 		opacity: 1,
-	// 		height: 29
-	// 	},
-	// 	hidden: { opacity: shouldReduceMotion ? 1 : 0, height: 0 }
-	// };
+	const variantsChildren = {
+		visible: {
+			opacity: 1,
+			height: 29,
+		},
+		hidden: { opacity: shouldReduceMotion ? 1 : 0, height: 0 },
+	};
 
 	const openSecondLevel = (secondCategory: string) => {
 		setMenu &&
@@ -46,12 +48,12 @@ export const Menu = (): JSX.Element => {
 			);
 	};
 
-	// const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
-	// 	if (key.code == 'Space' || key.code == 'Enter') {
-	// 		key.preventDefault();
-	// 		openSecondLevel(secondCategory);
-	// 	}
-	// };
+	const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
+		if (key.code == "Space" || key.code == "Enter") {
+			key.preventDefault();
+			openSecondLevel(secondCategory);
+		}
+	};
 
 	const buildFirstLevel = () => {
 		return (
@@ -125,11 +127,12 @@ export const Menu = (): JSX.Element => {
 	};
 
 	return (
-		// <ul>
-		//   {menu.map(m => (<li key={m._id.secondCategory}>{m._id.secondCategory}</li>))}
-		// </ul>
 		<nav className={styles.menu} role='navigation'>
-			{/* {announce && <span role="log" className="visualyHidden">{announce == 'opened' ? 'развернуто' : 'свернуто'}</span>} */}
+			{announce && (
+				<span role='log' className='visualyHidden'>
+					{announce == "opened" ? "развернуто" : "свернуто"}
+				</span>
+			)}
 			{buildFirstLevel()}
 		</nav>
 	);
